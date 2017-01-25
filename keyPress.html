@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Key Press Events</title>
+    <link rel="stylesheet" type="text/css" href="circles.css">
+    <!-- load paper.js lib -->
+    <script type="text/javascript" src="lib/docs/assets/js/paper.js"></script>
+    <!-- Define inlined PaperScript associate it with myCanvas -->
+    <script type="text/paperscript" canvas="myCanvas">
+    function onKeyDown(event) {
+        new Path.Circle(new Point(100, 100), 25).fillColor = "blue";
+    }
+    </script>
+</head>
+
+<body>
+    <canvas id="myCanvas" resize></canvas>
+</body>
+
+</html>
