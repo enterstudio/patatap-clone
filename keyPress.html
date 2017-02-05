@@ -8,19 +8,20 @@
     <script type="text/javascript" src="lib/docs/assets/js/paper.js"></script>
     <!-- Define inlined PaperScript associate it with myCanvas -->
     <script type="text/paperscript" canvas="myCanvas">
+    var circles = [];
     function onKeyDown(event) {
         var maxPoint = new Point(view.size.width, view.size.height);
         var randomPoint = Point.random();
         var point = maxPoint * randomPoint;
-        new Path.Circle(point, 25).fillColor = "blue";
+        var newCircle = new Path.Circle(point, 300);
+        newCircle.fillColor = "blue"
+        circles.push(newCircle);
     }
-    var animatedCircle = new Path.Circle(new Point(300,300),100);
-    animatedCircle.fillColor="red";
     function onFrame(event) {
-        // Each frame, change the fill color of the path slightly by
-        // adding 1 to its hue:
-        animatedCircle.fillColor.hue += 1;
-        animatedCircle.scale(.95);
+        for(var i=0; i < circles.length; i++){
+            circles[i].fillColor.hue += 1;
+            circles[i].scale(.95);
+        }
     }
     </script>
 </head>
