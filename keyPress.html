@@ -4,17 +4,47 @@
 <head>
     <title>Key Press Events</title>
     <link rel="stylesheet" type="text/css" href="circles.css">
+    <!-- load howler cdn -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.2/howler.core.min.js"></script>
     <!-- load paper.js lib -->
     <script type="text/javascript" src="lib/docs/assets/js/paper.js"></script>
     <!-- Define inlined PaperScript associate it with myCanvas -->
     <script type="text/paperscript" canvas="myCanvas">
+    var sound1 = new Howl({
+        src: ['sounds/A/squiggle.mp3']
+    });
+    var sound2 = new Howl({
+        src: ['sounds/A/clay.mp3']
+    });
+    var sound3 = new Howl({
+        src: ['sounds/A/moon.mp3']
+    });
+
     var circles = [];
+
     function onKeyDown(event) {
         var maxPoint = new Point(view.size.width, view.size.height);
         var randomPoint = Point.random();
         var point = maxPoint * randomPoint;
         var newCircle = new Path.Circle(point, 300);
-        newCircle.fillColor = "blue"
+
+        if(event.key==='a'){
+            sound1.play();
+            newCircle.fillColor = "#2c3e50";
+        }
+        
+        else if(event.key==='s'){
+            sound2.play();
+            newCircle.fillColor = "#2d7ea0"
+        }
+        
+        else if(event.key==='d'){
+            sound3.play();
+            newCircle.fillColor = "#16af8c"        }
+
+        else {
+            newCircle.fillColor = "blue"
+        }
         circles.push(newCircle);
     }
     function onFrame(event) {
